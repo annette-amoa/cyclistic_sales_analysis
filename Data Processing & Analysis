@@ -1,0 +1,47 @@
+QUERY 1
+#Check for nulls in entire table
+SELECT ride_id, COUNT(1) nulls_count
+FROM `capestone123.bike_share.final_table` t,
+UNNEST(REGEXP_EXTRACT_ALL(TO_JSON_STRING(t), r'"(\w+)":null')) ride_id
+GROUP BY ride_id
+
+Null Results were
+  #start_station_name(816263)
+  #start_station_id(816260)
+  #end_station_name(871535)
+  #end_station_id(871535)
+  #end_lat(5033)
+  #end_lng(5033)
+
+
+
+QUERY 2
+SELECT 
+
+#Check for duplicates
+COUNT(DISTINCT(ride_id)),
+
+#Check for mispelling
+COUNT(DISTINCT(rideable_type)),
+
+FROM `capestone123.bike_share.final_table` 
+
+
+QUERY 3 - Results saved in a table exported to Google Studio for visualisation
+SELECT *
+
+#Remove unecessary columns
+EXCEPT(start_station_name, start_station_id,end_station_id,end_station_name),
+
+#Calculate bike ride duration
+TIMESTAMP_DIFF(ended_at, started_at, minute)  AS ride_length_min,
+
+#Convert weekdays to numbers
+EXTRACT(DAYOFWEEK FROM started_at) AS day_number,
+
+FROM `capestone123.bike_share.final_table`
+
+
+
+
+
