@@ -1,4 +1,4 @@
-# cyclistic_sales_analysis
+# Cyclistic_Sales_Analysis
 
 Cyclistic is a bikeshare company that has casual riders who (buy single ride or full-day passes) and annual members. 
 It aims to convert its casual riders to annual member by developing a new marketing strategy. This project analyses the sales within the 
